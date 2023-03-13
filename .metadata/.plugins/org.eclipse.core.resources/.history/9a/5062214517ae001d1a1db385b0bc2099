@@ -1,0 +1,30 @@
+package com.capg.taxCalculator;
+
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.capg.taxCalculator.Repositories.TaxCalculatorRepository;
+import com.capg.taxCalculator.service.TaxCalculatorService;
+
+@SpringBootTest(classes = {TaxCalculatorApplicationTests.class})
+class TaxCalculatorApplicationTests {
+
+	@Mock
+	TaxCalculatorRepository prepo;
+	
+	@InjectMocks
+	TaxCalculatorService pservice;
+	
+	@Test
+	public void test_addProducts() {	
+		
+		
+		Product prod = new Product(8,"shoes", "footwear", 5000.00, "new",100,"testimg",localDateTime);
+		when(prepo.save(prod)).thenReturn(prod);
+		System.out.println(prod);
+		assertEquals("shoes",prod.getProductName());
+	}
+
+}
